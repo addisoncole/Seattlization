@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
 
 class App extends Component {
@@ -10,6 +10,7 @@ class App extends Component {
             <h1>Seattlization</h1>
             <h2><small>The Sound The Data About</small></h2>
         </header>
+        <p>Homeless Yearly Count: </p>
       </div>
     );
   }
