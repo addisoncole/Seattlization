@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import DataSet from './components/DataSet';
 import './App.css';
 
+
 class App extends Component {
+
+  constructor() {
+    super();
+  }
+
   render() {
     return (
       <div className="App">
@@ -11,6 +17,7 @@ class App extends Component {
             <h2><small>The Sound The Data About</small></h2>
         </header>
         <p>Homeless Yearly Count: </p>
+        <DataSet />
       </div>
     );
   }
