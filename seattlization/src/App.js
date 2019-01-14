@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import DataSet from './components/DataSet';
 import './App.css';
 
+import Nav from './components/Nav';
+
 
 class App extends Component {
 
@@ -11,12 +13,13 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className="app">
+        <header className="app-header">
+          <div className="title-container">
             <h1>Seattlization</h1>
-            <h2><small>The Sound The Data About</small></h2>
+          </div>
+          <Nav />
         </header>
-        <p>Homeless Yearly Count: </p>
         <DataSet />
       </div>
     );
