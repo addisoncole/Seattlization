@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom'
 import DataSet from './components/DataSet';
 import './App.css';
 
@@ -9,6 +10,17 @@ class App extends Component {
 
   constructor() {
     super();
+
+    this.state = {
+      currentPage: "/",
+    }
+  }
+
+  changeCurrentPage = (page) => {
+    console.log(page);
+    this.setState({
+      currentPage: page,
+    })
   }
 
   render() {
@@ -16,11 +28,11 @@ class App extends Component {
       <div className="app">
         <header className="app-header">
           <div className="title-container">
-            <h1>Seattlization</h1>
+            <h1 className="title"><Link to="/">Seattlization</Link></h1>
           </div>
           <Nav />
         </header>
-        <DataSet />
+        <Route path="/sound" exact="true" render={() => <DataSet />} />
       </div>
     );
   }

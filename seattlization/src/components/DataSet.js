@@ -1,18 +1,18 @@
 import axios from 'axios';
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import Tone from 'tone';
 
 
 
 const GET_COUNTS = "http://localhost:8000/homelesscounts/";
 
-class NewComponent extends Component {
+class DataSet extends Component {
   constructor(props) {
     super(props);
     this.state = {
       yearlyHomelessCount: [],
       statusText: '',
-      }
+    }
 
   }
 
@@ -22,7 +22,6 @@ class NewComponent extends Component {
     });
     axios.get(GET_COUNTS)
     .then((response) => {
-      console.log(response.data)
       this.setState({
         yearlyHomelessCount: response.data,
         statusText: 'success',
@@ -36,6 +35,20 @@ class NewComponent extends Component {
     });
   }
 
+  playCount = () => {
+    const { yearlyHomelessCount } = this.state;
+    const count =  (yearlyHomelessCount[1].total - yearlyHomelessCount[0].total) - 2100;
+    var synth = new Tone.PolySynth(7, Tone.Synth).toMaster();
+    synth.set("detune", -1200);
+    console.log(count);
+    const time = Tone.context.currentTime;
+    for (var i = 0; i < count; i++) {
+      const sound = synth.triggerAttackRelease(["G6", "B4"], "4n", (time + i) );
+      console.log(sound);
+    }
+  }
+
+
   render() {
     const { yearlyHomelessCount } = this.state;
     const allCounts = yearlyHomelessCount;
@@ -43,17 +56,16 @@ class NewComponent extends Component {
     const displayCounts = allCounts.map((count, i) => {
       return (`${count.year}: ${count.total} `)
     });
+    // const synth = new Tone.Synth().toMaster();
+    // const sound = synth.triggerAttackRelease("G4", "8n");
 
     return (
       <div>
-        {displayCounts}
+      {displayCounts}
+      <button onClick = {this.playCount} >Play</button>
       </div>
     )
   }
 }
 
-NewComponent.propTypes = {
-
-};
-
-export default NewComponent;
+export default DataSet;

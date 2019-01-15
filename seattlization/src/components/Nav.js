@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
+import NavItem from './NavItem';
 import './Nav.css';
+
+const NAVLINKS = [
+  {route: "/sound", title: "the sound"},
+  {route: "/data", title: "the data"},
+  {route: "/about", title: "about"}
+]
 
 class Nav extends Component {
   constructor(props) {
@@ -10,16 +18,23 @@ class Nav extends Component {
 
   render() {
 
+    const displayLinks = NAVLINKS.map((link, i) => {
+      return (
+        <NavItem id={i} route={link.route} title={link.title} />
+      )
+    });
+
     return (
         <div className="nav">
-          <h2><small><Link to= "/sound">the sound</Link></small></h2>
-          <h2><small><Link to= "/data">the data</Link></small></h2>
-          <h2><small><Link to= "/about">about</Link></small></h2>
+          {displayLinks}
         </div>
     )
   }
-
 }
+
+Nav.propTypes = {
+  selectedCallback: PropTypes.func,
+};
 
 
 export default Nav;
