@@ -12,9 +12,9 @@ class NavItem extends Component {
 
     return (
       <div>
-        <h2 className={"nav-link"} id={this.props.route}>
+        <h2 id={this.props.route}>
           <small>
-            <NavLink to={this.props.route} activeClassName="nav-link-selected">{this.props.title}</NavLink>
+            <NavLink to={this.props.route} className="nav-link" activeClassName="nav-link-selected">{this.props.title}</NavLink>
           </small>
         </h2>
       </div>

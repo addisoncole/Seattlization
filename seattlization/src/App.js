@@ -10,17 +10,6 @@ class App extends Component {
 
   constructor() {
     super();
-
-    this.state = {
-      currentPage: "/",
-    }
-  }
-
-  changeCurrentPage = (page) => {
-    console.log(page);
-    this.setState({
-      currentPage: page,
-    })
   }
 
   render() {

@@ -38,12 +38,11 @@ class DataSet extends Component {
   playCount = () => {
     const { yearlyHomelessCount } = this.state;
     const count =  (yearlyHomelessCount[1].total - yearlyHomelessCount[0].total) - 2100;
-    var synth = new Tone.PolySynth(7, Tone.Synth).toMaster();
-    synth.set("detune", -1200);
+    var synth = new Tone.PolySynth(2, Tone.Synth).toMaster();
     console.log(count);
     const time = Tone.context.currentTime;
     for (var i = 0; i < count; i++) {
-      const sound = synth.triggerAttackRelease(["G6", "B4"], "4n", (time + i) );
+      const sound = synth.triggerAttackRelease(["F2", "Ab2"], "4n", (time + i) );
       console.log(sound);
     }
   }

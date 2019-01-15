@@ -2,7 +2,7 @@
   text-align: right;
   background-color: white;
   border: 1px solid black;
-  margin-right: 2rem;
+  margin-right: 1.7rem;
   margin-top: 1.5rem;
   width: 175px;
   box-shadow: 1rem 1rem rgba(0,0,0,.7);
@@ -13,35 +13,35 @@
   box-shadow: .75rem .75rem rgba(0,0,0,.9);
 }
 
-.nav-link a {
-  padding: 8px;
-  margin-right: 1.8rem;
-  margin-left: 3rem;
+.nav-link {
+  padding: 8.3px;
+  margin-right: 10px;
   white-space: nowrap;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 400;
   text-decoration: none;
   color: black;
   transition: 1s;
 }
 
+.nav .nav-link-selected {
+  text-align: left;
+}
+
 .nav-link-selected {
   padding: 8px;
-  margin-right: 1.8rem;
-  margin-left: 3rem;
-  white-space: nowrap;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
+  margin-right: 35px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
   text-decoration: none;
   transition: 1s;
-  font-style: italic;
   background-image: -webkit-linear-gradient(-45deg, rgba(77,71,180,1)  0%, rgba(154,49,164,1) 47%, rgba(235,173,131,1) 100%);
   background-repeat: no-repeat;
   background-position: 0 30px;
   background-size: 100% 4px;
 }
 
-.nav-link a:hover{
+.nav-link:hover{
   font-style: italic;
   background-image: -webkit-linear-gradient(-45deg, rgba(77,71,180,1)  0%, rgba(154,49,164,1) 47%, rgba(235,173,131,1) 100%);
   background-repeat: no-repeat;
