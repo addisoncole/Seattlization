@@ -25,14 +25,14 @@ const GraphItem = ({type, dataSet, years, xAxis, xAxisTitle, yAxis, yAxisTitle, 
           <VictoryAxis
             label= {xAxisTitle}
             style={{
-              axisLabel: {padding: 30},
+              axisLabel: {fontSize: 10, padding: 30},
               tickLabels: {fontSize: 8, padding: 5}
             }}
             tickFormat={(x) => (`${x}`)}/>
           <VictoryAxis dependentAxis
             label={yAxisTitle}
             style={{
-              axisLabel: {padding: 30},
+              axisLabel: {fontSize: 10, padding: 30},
               tickLabels: {fontSize: 8, padding: 5}
             }}
             tickFormat={(x) => (`${x / 1000}`)} />
@@ -59,15 +59,15 @@ const GraphItem = ({type, dataSet, years, xAxis, xAxisTitle, yAxis, yAxisTitle, 
         <VictoryAxis
           label= {xAxisTitle}
           style={{
-            axisLabel: {padding: 30},
+            axisLabel: {fontSize: 10, padding: 30},
             tickLabels: {fontSize: 8, padding: 5}
           }}
           tickFormat={(x) => (`${x}`)}/>
         <VictoryAxis dependentAxis
           label={yAxisTitle}
           style={{
-            axisLabel: {padding: 35},
-            tickLabels: {fontSize: 8, padding: 5}
+            axisLabel: {fontSize: 10, padding: 35},
+            tickLabels: {fontSize: 6, padding: 5}
           }}/>
         <VictoryArea
           style={{ data: { fill: "rgba(238, 110, 23, 0.6)" } }}
