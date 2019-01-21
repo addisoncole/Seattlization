@@ -55,12 +55,13 @@ class DataSet extends Component {
     const displayCounts = allCounts.map((count, i) => {
       return (`${count.year}: ${count.total} `)
     });
+
+    // console.log(displayCounts)
     // const synth = new Tone.Synth().toMaster();
     // const sound = synth.triggerAttackRelease("G4", "8n");
 
     return (
       <div>
-      {displayCounts}
       <button onClick = {this.playCount} >Play</button>
       </div>
     )

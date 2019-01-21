@@ -14,8 +14,9 @@
 }
 
 .nav-link {
-  padding: 8.3px;
+  padding: 10px;
   margin-right: 10px;
+  margin-left: 5px;
   white-space: nowrap;
   font-family: 'Playfair Display', serif;
   font-weight: 400;
@@ -31,20 +32,21 @@
 .nav-link-selected {
   padding: 8px;
   margin-right: 35px;
+  margin-left: 5px;
   font-family: 'Playfair Display', serif;
   font-weight: 700;
   text-decoration: none;
   transition: 1s;
-  background-image: -webkit-linear-gradient(-45deg, rgba(77,71,180,1)  0%, rgba(154,49,164,1) 47%, rgba(235,173,131,1) 100%);
+  background-image: -webkit-linear-gradient(-45deg, rgba(77,71,180,.8)  0%, rgba(154,49,164,.8) 47%, rgba(235,173,131,.8) 100%);
   background-repeat: no-repeat;
-  background-position: 0 30px;
-  background-size: 100% 4px;
+  background-position: 0 24px;
+  background-size: 100% 8px;
 }
 
 .nav-link:hover{
   font-style: italic;
-  background-image: -webkit-linear-gradient(-45deg, rgba(77,71,180,1)  0%, rgba(154,49,164,1) 47%, rgba(235,173,131,1) 100%);
+  background-image: -webkit-linear-gradient(-45deg, rgba(77,71,180,.8)  0%, rgba(154,49,164,.8) 47%, rgba(235,173,131,.8) 100%);
   background-repeat: no-repeat;
-  background-position: 0 30px;
-  background-size: 100% 4px;
+  background-position: 0 24px;
+  background-size: 100% 8px;
 }

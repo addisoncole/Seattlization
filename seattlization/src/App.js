@@ -4,13 +4,14 @@ import DataSet from './components/DataSet';
 import './App.css';
 
 import Nav from './components/Nav';
+import DataContainer from './components/DataContainer';
 
 
 class App extends Component {
 
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
 
   render() {
     return (
@@ -21,7 +22,10 @@ class App extends Component {
           </div>
           <Nav />
         </header>
-        <Route path="/sound" exact="true" render={() => <DataSet />} />
+        <Route path="/" exact="true" render={() => <DataContainer greet="Main Page Intro"/>} />
+        <Route path="/sound" />
+        <Route path="/numbers" render={() => <DataContainer/>} />
+        <Route path="/about" />
       </div>
     );
   }
