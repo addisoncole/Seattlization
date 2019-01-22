@@ -4,7 +4,7 @@ import { VictoryBar, VictoryChart, VictoryAxis, VictoryStack, VictoryLabel, Vict
 import './GraphItem.css';
 
 // `${data.year.year}: Total:${data.year.total}, Unsheltered:${data.year.unsheltered} Sheltered:${data.year.sheltered} ;;  `
-const GraphItem = ({type, dataSet, years, xAxis, xAxisTitle, yAxis, yAxisTitle, datumOne, datumOneTitle, datumTwo, datumTwoTitle, domain}) => {
+const GraphItem = ({type, dataSet, dataSetOne, dataSetTwo, years, xAxis, xAxisTitle, yAxis, yAxisTitle, yAxisTwo, datumOne, datumOneTitle, datumTwo, datumTwoTitle, domain}) => {
 
 
   if (type === "bar-stacked"){
@@ -15,9 +15,13 @@ const GraphItem = ({type, dataSet, years, xAxis, xAxisTitle, yAxis, yAxisTitle, 
           domainPadding={{ x: 4 }}
           theme={VictoryTheme.material}
           style={{ parent: { maxWidth: "60%" } }}>
-          <VictoryLegend x={125} y={10}
+          <VictoryLegend x={125} y={35}
             orientation="vertical"
+            symbolSpacer={2}
             colorScale={[ "rgba(77,71,180,.7)", "rgba(154,49,164,.7)"]}
+            style={{
+              labels: { fontSize: 8, padding: 10 }
+            }}
             data={[
               { name: `${datumOneTitle}` }, { name: `${datumTwoTitle}` }
             ]}
@@ -69,19 +73,21 @@ const GraphItem = ({type, dataSet, years, xAxis, xAxisTitle, yAxis, yAxisTitle, 
             axisLabel: {fontSize: 10, padding: 35},
             tickLabels: {fontSize: 6, padding: 5}
           }}/>
-        <VictoryArea
-          style={{ data: { fill: "rgba(238, 110, 23, 0.6)" } }}
-          data={dataSet}
-          x={xAxis}
-          y={yAxis}
-          />
-      </VictoryChart>
-    )
+          <VictoryArea
+            style={{ data: { fill: "rgba(238, 110, 23, 0.6)" } }}
+            data={dataSet}
+            x={xAxis}
+            y={yAxis}
+            />
+        </VictoryChart>
+      )
+    } else if (type === "area-chart-stacked") {
+
+    }
   }
-}
 
-GraphItem.propTypes = {
+  GraphItem.propTypes = {
 
-};
+  };
 
-export default GraphItem;
+  export default GraphItem;

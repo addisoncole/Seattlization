@@ -5,6 +5,7 @@ import './App.css';
 
 import Nav from './components/Nav';
 import DataContainer from './components/DataContainer';
+import SoundContainer from './components/SoundContainer';
 
 
 class App extends Component {
@@ -23,7 +24,7 @@ class App extends Component {
           <Nav />
         </header>
         <Route path="/" exact="true" render={() => <DataContainer greet="Main Page Intro"/>} />
-        <Route path="/sound" />
+        <Route path="/sound" render={() => <SoundContainer/>}/>
         <Route path="/numbers" render={() => <DataContainer/>} />
         <Route path="/about" />
       </div>
