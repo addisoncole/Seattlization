@@ -13,12 +13,12 @@ class SoundContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentYear: 2010,
       yearlyHomelessCounts: [],
       communitySurveys: [],
       lowIncomeHousings: [],
       statusText: '',
     }
-
   }
 
   componentDidMount() {
@@ -30,8 +30,11 @@ class SoundContainer extends Component {
   getHomelessCounts(){
     axios.get(GET_COUNTS)
     .then((response) => {
+      const homelessCounts = response.data;
+      const filteredHomelessCounts=  homelessCounts.filter(f => YEARS.includes(f.year));
+      const sortedHomelessCounts = filteredHomelessCounts.sort(function(a, b){return a.year - b.year});
       this.setState({
-        yearlyHomelessCounts: response.data,
+        yearlyHomelessCounts: sortedHomelessCounts,
         statusText: 'success',
       });
     })
@@ -46,8 +49,11 @@ class SoundContainer extends Component {
   getCommunitySurveys(){
     axios.get(GET_SURVEYS)
     .then((response) => {
+      const communitySurveys = response.data;
+      const filteredCommunitySurveys=  communitySurveys.filter(f => YEARS.includes(f.year));
+      const sortedCommunitySurveys = filteredCommunitySurveys.sort(function(a, b){return a.year - b.year})
       this.setState({
-        communitySurveys: response.data,
+        communitySurveys: sortedCommunitySurveys,
         statusText: 'success',
       });
     })
@@ -62,8 +68,11 @@ class SoundContainer extends Component {
   getLowIncomeHousing(){
     axios.get(GET_LIH)
     .then((response) => {
+      const lowIncomeHousing = response.data;
+      const filteredLowIncomeHousings=  lowIncomeHousing.filter(f => YEARS.includes(f.year_placed_in_service));
+      const sortedLowIncomeHousings = filteredLowIncomeHousings.sort(function(a, b){return a.year_placed_in_service - b.year_placed_in_service});
       this.setState({
-        lowIncomeHousings: response.data,
+        lowIncomeHousings: sortedLowIncomeHousings,
         statusText: 'success',
       });
     })
@@ -76,7 +85,7 @@ class SoundContainer extends Component {
   }
 
   playCount = () => {
-    const { yearlyHomelessCounts, communitySurveys, lowIncomeHousings} = this.state;
+    const { yearlyHomelessCounts, communitySurveys, lowIncomeHousings, currentYear} = this.state;
     const count =  (yearlyHomelessCounts[1].total - yearlyHomelessCounts[0].total) - 2100;
     var synth = new Tone.PolySynth(2, Tone.Synth).toMaster();
     console.log(count);
@@ -91,15 +100,9 @@ class SoundContainer extends Component {
   render() {
     const { yearlyHomelessCounts, communitySurveys, lowIncomeHousings} = this.state;
 
-    const sortedHomelessCounts = yearlyHomelessCounts.sort(function(a, b){return a.year - b.year})
-
-    const sortedCommunitySurveys = communitySurveys.sort(function(a, b){return a.year - b.year})
-
-    const sortedLowIncomeHousings = lowIncomeHousings.sort(function(a, b){return a.year - b.year});
-
-    console.log(sortedHomelessCounts);
-    console.log(sortedCommunitySurveys);
-    console.log(sortedLowIncomeHousings);
+    console.log(yearlyHomelessCounts);
+    console.log(communitySurveys);
+    console.log(lowIncomeHousings);
 
     // const displayCounts = allCounts.map((count, i) => {
     //   return (`${count.year}: ${count.total} `)
@@ -111,7 +114,7 @@ class SoundContainer extends Component {
 
     return (
       <div>
-      <button onClick = {this.playCount} >Play</button>
+      <button onClick = {this.playYear} >Play</button>
       </div>
     )
   }
