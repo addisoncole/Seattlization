@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import { CSSTransitionGroup } from 'react-transition-group'
 import Tone from 'tone';
 import HeaderContainer from './HeaderContainer';
 
@@ -148,9 +149,16 @@ class SoundContainer extends Component {
 
     return (
       <div>
-        <HeaderContainer />
-        <button onClick = {this.playYear} >Play</button>
-        <button onClick = {this.stopTransport} >stop</button>
+        <CSSTransitionGroup
+          transitionName="example"
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+          transitionEnter={false}
+          transitionLeave={false}>
+          <HeaderContainer />
+          <button onClick = {this.playYear} >Play</button>
+          <button onClick = {this.stopTransport} >stop</button>
+        </CSSTransitionGroup>
       </div>
     )
   }

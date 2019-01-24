@@ -195,7 +195,7 @@ const GraphItem = ({type, dataSet, dataSetOne, dataSetTwo, years, xAxis, xAxisTi
                   }}
                   tickFormat={(x) => (`$${x/1000}k`)}/>
                 <VictoryArea
-                  style={{ data: { fill: "rgba(238, 110, 23, 0.6)" } }}
+                  style={{ data: { fill: "rgba(154,49,164,.7)" } }}
                   data={dataSet}
                   x={xAxis}
                   y={yAxis}

@@ -1,0 +1,31 @@
+.about-container{
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+  font-family: 'Playfair Display', serif;
+  display: flex;
+  justify-content: space-around;
+}
+
+.about-container-center{
+  margin-top: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+  font-family: 'Playfair Display', serif;
+}
+
+.about-title{
+  font-size: 50px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.cart-image{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: grayscale(100%);
+  border-top: 25px solid black;
+  border-bottom: 40px solid black;
+  width:100%;
+}

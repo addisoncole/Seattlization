@@ -1,6 +1,7 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { CSSTransitionGroup } from 'react-transition-group'
 import {firstBy} from "thenby";
 import GraphItem from './GraphItem';
 import sleeper from './Sleeper.jpg';
@@ -206,96 +207,109 @@ class DataContainer extends Component {
       .thenBy("month")
     )
 
+    console.log(sortedHousingMarkets)
+
     const countedDataPointsForRemovals = this.countReasonsForRemoval(encampmentRemovals);
 
     const medianSalePrice = this.formatHousingMarket(sortedHousingMarkets);
 
     return (
       <div>
-        <HeaderContainer />
-        <h2 className="article-title">Point In Time Count
-          of Homeless in King County</h2>
-        <div className="data-container">
-          <div className="graph-container">
-            <GraphItem
-              className="graph"
-              type="bar-stacked"
-              dataSet={sortedHomelessCounts}
-              years={COUNT_YEARS}
-              xAxis="year"
-              xAxisTitle="Years"
-              yAxisTitle="# of Homeless in King County (in thousands)"
-              datumOne="unsheltered"
-              datumOneTitle="unsheltered"
-              datumTwo="number_in_shelter_and_transitional_housing"
-              datumTwoTitle="sheltered homeless"/>
-            <span className="span-highlight">It is estimated that <span className="span-highlight-focus">3 times as many people experience homeless</span> each year in Seattle than is counted during the Point In Time Count</span>
-          </div>
-          <div className="data-container-large">
-            <h2 className="article-title">Encampment Removals 2018</h2>
-            <p className="article">Between January and August, <span className="text-emphasis">152 encampment</span> sites were removed by Seattle governmental agencies. </p>
-            <div className="graph-container-large">
-              <GraphItem type="bar-single-horizontal-large"
-                dataSet={countedDataPointsForRemovals}
-                yAxisTitle="Reason(s) for removal"
-                xAxisTitle="Number of times given as reason for removal"
-                yAxis="numbers"
-                xAxis="reason"
-                />
-            </div>
-            <div className="article-and-picture">
-              <img alt="Person sleeping on park bench" className="sleeper-image" src={sleeper} />
-              <p className="text-block">If you have no home, where can you sleep? Loitering laws prevent homeless persons from getting rest during the day, and nights can be unsafe. Though <span className="paragraph-emphasis">it is not illegal to be homeless</span>, how long can you stay in a public place in a tent before it is deemed illegal? What do you do if shelters are closed, full, or you do not fit the many requirements and rules?</p>
-            </div>
-          </div>
+        <CSSTransitionGroup
+        transitionName="example"
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionEnter={false}
+        transitionLeave={false}>
+          <HeaderContainer />
+          <h2 className="article-title">Point In Time Count
+            of Homeless in King County</h2>
           <div className="data-container">
-            <h2 className="article-title">Gini Coefficient: Seattle, WA</h2>
             <div className="graph-container">
-              <span className="span-article">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque suscipit ornare ligula vel lacinia. Suspendisse potenti. Sed semper felis neque, vel blandit mauris interdum ac. Duis accumsan metus a lacus faucibus, vitae ornare ex imperdiet. Cras tempus augue vitae ante faucibus, eget posuere dolor consequat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent ut orci at erat tincidunt lacinia. Curabitur rutrum interdum lacus at blandit. Curabitur sit amet egestas ligula. Fusce pellentesque eleifend lectus ut feugiat. Quisque ac tortor velit. Vivamus placerat urna at consequat maximus. Suspendisse sit amet fermentum ligula. Donec libero nisl, tristique id risus et, imperdiet tempus quam. </span>
-              <GraphItem type="area-chart"
-                dataSet={sortedCommunitySurveys}
-                xAxis={"year"}
-                yAxis={"gini_index"}
+              <GraphItem
+                className="graph"
+                type="bar-stacked"
+                dataSet={sortedHomelessCounts}
+                years={COUNT_YEARS}
+                xAxis="year"
                 xAxisTitle="Years"
-                yAxisTitle="Gini Index"
-                domain={[0.455, 0.475]}/>
+                yAxisTitle="# of Homeless in King County (in thousands)"
+                datumOne="unsheltered"
+                datumOneTitle="unsheltered"
+                datumTwo="number_in_shelter_and_transitional_housing"
+                datumTwoTitle="sheltered homeless"/>
+              <span className="span-highlight">It is estimated that <span className="span-highlight-focus">3 times as many people experience homeless</span> each year in Seattle than is counted during the Point In Time Count.</span>
+            </div>
+            <div className="data-container-large">
+              <h2 className="article-title">Encampment Removals 2018</h2>
+              <p className="article">Between January and August, <span className="text-emphasis">152 encampment</span> sites were removed by Seattle governmental agencies. </p>
+              <div className="graph-container-large">
+                <GraphItem type="bar-single-horizontal-large"
+                  dataSet={countedDataPointsForRemovals}
+                  yAxisTitle="Reason(s) for removal"
+                  xAxisTitle="Number of times given as reason for removal"
+                  yAxis="numbers"
+                  xAxis="reason"
+                  />
+              </div>
+              <div className="article-and-picture">
+                <img alt="Person sleeping on park bench" className="sleeper-image" src={sleeper} />
+                <p className="text-block">If you have no home, where can you sleep? Loitering laws prevent homeless persons from getting rest during the day, and nights can be unsafe. Though <span className="paragraph-emphasis">it is not illegal to be homeless</span>, how long can you stay in a public place in a tent before it is deemed illegal? What do you do if shelters are closed, full, or you do not fit the many requirements and rules?</p>
+              </div>
+            </div>
+            <div className="data-container">
+              <h2 className="article-title">Gini Coefficient: Seattle, WA</h2>
+              <div className="graph-container">
+                <div className='article-container'>
+                  <div className="article-shadow">
+                  </div>
+                  <span className="span-article">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque suscipit ornare ligula vel lacinia. Suspendisse potenti. Sed semper felis neque, vel blandit mauris interdum ac. Duis accumsan metus a lacus faucibus, vitae ornare ex imperdiet. Cras tempus augue vitae ante faucibus, eget posuere dolor consequat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent ut orci at erat tincidunt lacinia. Curabitur rutrum interdum lacus at blandit. Curabitur sit amet egestas ligula. Fusce pellentesque eleifend lectus ut feugiat. Quisque ac tortor velit. Vivamus placerat urna at consequat maximus. Suspendisse sit amet fermentum ligula. Donec libero nisl, tristique id risus et, imperdiet tempus quam. </span>
+                </div>
+                <GraphItem type="area-chart"
+                  dataSet={sortedCommunitySurveys}
+                  xAxis={"year"}
+                  yAxis={"gini_index"}
+                  xAxisTitle="Years"
+                  yAxisTitle="Gini Index"
+                  domain={[0.455, 0.475]}/>
+              </div>
+            </div>
+            <div className="data-container">
+              <h2 className="article-title">Median Income Seattle, WA 2010 - 2017</h2>
+              <div className="graph-container">
+                <GraphItem type="area-chart"
+                  dataSet={sortedCommunitySurveys}
+                  xAxis={"year"}
+                  yAxis={"median_income"}
+                  xAxisTitle="Years"
+                  yAxisTitle="Median Income"
+                  domain={[40000, 100000]}
+                  />
+                <span className="span-highlight">Over the 7 years that this data was collected, the median income in Seattle rose <span className="span-highlight-focus">over 35%</span> meanwhile the average sale price of a home rose <span className="span-highlight-focus">over 126%</span> over the same period.</span>
+              </div>
+            </div>
+            <div className="data-container-large">
+              <h2 className="article-title">Median Home Sale Price, 2012 - 2018</h2>
+              <div className="graph-container-large">
+                <GraphItem type="area-chart-large"
+                  dataSet={medianSalePrice}
+                  xAxis={"date"}
+                  yAxis={"median sale price"}
+                  xAxisTitle="Month-Year"
+                  yAxisTitle="Median Sale Price"
+                  domain={[275000, 800000]}
+                  />
+              </div>
             </div>
           </div>
-          <div className="data-container">
-            <h2 className="article-title">Median Income Seattle, WA 2010 - 2017</h2>
-            <div className="graph-container">
-              <GraphItem type="area-chart"
-                dataSet={sortedCommunitySurveys}
-                xAxis={"year"}
-                yAxis={"median_income"}
-                xAxisTitle="Years"
-                yAxisTitle="Median Income"
-                domain={[40000, 100000]}
-                />
-              <span className="span-highlight">Over the 7 years that this data was collected, the median income in Seattle rose <span className="span-highlight-focus">over 35%</span></span>
-            </div>
-          </div>
-          <div className="data-container-large">
-            <h2 className="article-title">Median Home Sale Price, 2012 - 2018</h2>
-            <div className="graph-container-large">
-              <GraphItem type="area-chart-large"
-                dataSet={medianSalePrice}
-                xAxis={"date"}
-                yAxis={"median sale price"}
-                xAxisTitle="Month-Year"
-                yAxisTitle="Median Sale Price"
-                domain={[275000, 800000]}
-                />
-            </div>
-          </div>
-        </div>
+        </CSSTransitionGroup>
       </div>
     )
   }
 }
 
 DataContainer.propTypes = {
-  greet: PropTypes.string,
+
 };
 
 export default DataContainer;
