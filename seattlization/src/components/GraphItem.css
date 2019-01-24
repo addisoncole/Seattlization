@@ -6,6 +6,7 @@
 }
 
 .chart-wrapper-large {
+  left: 50%;
   position: static;
   width: 900px;
   padding: 25px;
@@ -19,8 +20,7 @@
 .chart-shadow {
   z-index: -1;
   position: relative;
-  padding: -20px;
-  margin-top: -600px;
+  margin-top: -670px;
   width: 640px;
   height: 640px;
   left: 20px;
@@ -32,7 +32,7 @@
   z-index: -1;
   position: relative;
   padding: -40px;
-  margin-top: -900px;
+  margin-top: -1080px;
   width: 950px;
   height: 950px;
   left: 25px;
