@@ -147,8 +147,11 @@ class SoundContainer extends Component {
   render() {
     const { yearlyHomelessCounts, communitySurveys, lowIncomeHousings} = this.state;
 
+    const play = `\u25b6`;
+    const stop = `\u25fc`;
+
     return (
-      <div>
+      <div className="container">
         <CSSTransitionGroup
           transitionName="example"
           transitionAppear={true}
@@ -156,8 +159,10 @@ class SoundContainer extends Component {
           transitionEnter={false}
           transitionLeave={false}>
           <HeaderContainer />
-          <button onClick = {this.playYear} >Play</button>
-          <button onClick = {this.stopTransport} >stop</button>
+          <div className="sound-container">
+            <button onClick = {this.playYear} className='control-button'><span className="button-text">Play</span>{play}</button>
+            <button onClick = {this.stopTransport} className='control-button'><span className="button-text">Stop</span>{stop}</button>
+          </div>
         </CSSTransitionGroup>
       </div>
     )

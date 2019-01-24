@@ -89,6 +89,8 @@
 
 .paragraph-emphasis {
   font-style: italic;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
 }
 
 .article-shadow {
