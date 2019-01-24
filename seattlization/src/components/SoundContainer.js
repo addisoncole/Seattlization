@@ -1,18 +1,20 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import Tone from 'tone';
+import HeaderContainer from './HeaderContainer';
 
 import './SoundContainer.css';
 
 const GET_COUNTS = "http://localhost:8000/homelesscounts/";
 const GET_SURVEYS = "http://localhost:8000/communitysurveys/";
 const GET_LIH = "http://localhost:8000/lowincomehousing/";
-const YEARS = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017]
+const YEARS = [ 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017]
 
 class SoundContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      compositionTime: 0,
       currentYear: 2010,
       yearlyHomelessCounts: [],
       communitySurveys: [],
@@ -69,7 +71,7 @@ class SoundContainer extends Component {
     axios.get(GET_LIH)
     .then((response) => {
       const lowIncomeHousing = response.data;
-      const filteredLowIncomeHousings=  lowIncomeHousing.filter(f => YEARS.includes(f.year_placed_in_service));
+      const filteredLowIncomeHousings = lowIncomeHousing.filter(f => YEARS.includes(f.year_placed_in_service));
       const sortedLowIncomeHousings = filteredLowIncomeHousings.sort(function(a, b){return a.year_placed_in_service - b.year_placed_in_service});
       this.setState({
         lowIncomeHousings: sortedLowIncomeHousings,
@@ -84,37 +86,71 @@ class SoundContainer extends Component {
     });
   }
 
-  playCount = () => {
+  stopTransport(){
+    Tone.Transport.pause();
+  }
+
+  playYear = () => {
     const { yearlyHomelessCounts, communitySurveys, lowIncomeHousings, currentYear} = this.state;
-    const count =  (yearlyHomelessCounts[1].total - yearlyHomelessCounts[0].total) - 2100;
-    var synth = new Tone.PolySynth(2, Tone.Synth).toMaster();
-    console.log(count);
-    const time = Tone.context.currentTime;
-    for (var i = 0; i < count; i++) {
-      const sound = synth.triggerAttackRelease(["F2", "Ab2"], "4n", (time + i) );
-      console.log(sound);
-    }
+
+    const currentYearLowIncomeHousing = lowIncomeHousings.filter(f => currentYear === (f.year_placed_in_service));
+
+    var synth = new Tone.PolySynth(3, Tone.Synth).toMaster();
+
+    // scale: ["G3", "A3", "B3", "D3", "E3", "G4"]
+    // minor: [Gb, Ab, Bb, Db, Eb, Gb]
+    const scale = [["G3","B3","D3"], ["A3","C#3","E3"], ["B3","D#3","F#3"], ["D3","F#3","A3"], ["E3","G#3","B3"], ["G4","B4","D4"]];
+    // const minor = [["Gb3", "Bb3", "Db3"], ["Ab3", "C3", "Eb3"], ["Bb3", "D3", "F3"], ["Db3", "F3", "Ab3"], ["Eb3", "G3", "Bb3"], ["Gb4", "Bb4", "Db4"]];
+
+    let count = 0;
+    let sequence = [];
+    let time = 0;
+
+    currentYearLowIncomeHousing.forEach(function(element) {
+      // console.log(element);
+      let chord = [];
+      if (element.number_of_units > 50) {
+        chord = scale[count];
+      } else {
+        chord = scale[count];
+      }
+
+      let chord_event = [(time + "i"), chord];
+
+      sequence.push(chord_event);
+
+      time += 10;
+      if (count === scale.length - 1) {
+        count = 0;
+      } else {
+        count += 1;
+      };
+
+    });
+
+    console.log(sequence);
+
+    let synthPart = new Tone.Part(function(time, note){
+      synth.triggerAttackRelease(note, "1n", time);
+    }, sequence ).start("0");
+
+    synthPart.loop = false;
+
+    Tone.Transport.bpm.value = 1;
+
+    Tone.Transport.start("+0.1");
+    Tone.Transport.stop(time);
   }
 
 
   render() {
     const { yearlyHomelessCounts, communitySurveys, lowIncomeHousings} = this.state;
 
-    console.log(yearlyHomelessCounts);
-    console.log(communitySurveys);
-    console.log(lowIncomeHousings);
-
-    // const displayCounts = allCounts.map((count, i) => {
-    //   return (`${count.year}: ${count.total} `)
-    // });
-
-    // console.log(displayCounts)
-    // const synth = new Tone.Synth().toMaster();
-    // const sound = synth.triggerAttackRelease("G4", "8n");
-
     return (
       <div>
-      <button onClick = {this.playYear} >Play</button>
+        <HeaderContainer />
+        <button onClick = {this.playYear} >Play</button>
+        <button onClick = {this.stopTransport} >stop</button>
       </div>
     )
   }

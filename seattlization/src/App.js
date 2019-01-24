@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom'
-import DataSet from './components/DataSet';
 import './App.css';
 
-import Nav from './components/Nav';
 import DataContainer from './components/DataContainer';
 import SoundContainer from './components/SoundContainer';
-
+import WelcomeComponent from './components/WelcomeComponent';
+import AboutContainer from './components/AboutContainer';
 
 class App extends Component {
 
@@ -17,16 +16,10 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <header className="app-header">
-          <div className="title-container">
-            <h1 className="title"><Link to="/">Seattlization</Link></h1>
-          </div>
-          <Nav />
-        </header>
-        <Route path="/" exact="true" render={() => <DataContainer greet="Main Page Intro"/>} />
+        <Route path="/" exact="true" render={() => <WelcomeComponent/>} />
         <Route path="/sound" render={() => <SoundContainer/>}/>
         <Route path="/numbers" render={() => <DataContainer/>} />
-        <Route path="/about" />
+        <Route path="/about" render={() => <AboutContainer/>}/>
       </div>
     );
   }

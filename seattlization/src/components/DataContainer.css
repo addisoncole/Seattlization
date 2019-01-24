@@ -1,3 +1,21 @@
 .data-container {
-  margin-left: 8vw;
+  margin-left: 45px;
+}
+
+.graph-container {
+  display: flex;
+  margin: 40px;
+  padding: 40px;
+}
+
+.graph{
+
+}
+
+.span-highlight {
+
+}
+
+.span-highlight{
+  font-family: 'Playfair Display', serif;
 }
