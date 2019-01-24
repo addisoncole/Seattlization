@@ -65,6 +65,7 @@
 }
 
 .article-and-picture{
+  margin-top: -90px;
   display: flex;
   background-color: black;
   padding-top: 40px;
