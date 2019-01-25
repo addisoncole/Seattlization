@@ -238,7 +238,7 @@ class DataContainer extends Component {
                 datumOneTitle="unsheltered"
                 datumTwo="number_in_shelter_and_transitional_housing"
                 datumTwoTitle="sheltered homeless"/>
-              <span className="span-highlight">It is estimated that <span className="span-highlight-focus">3 times as many people experience homeless</span> each year in Seattle than is counted during the Point In Time Count.</span>
+              <span className="span-highlight">It is estimated that <span className="span-highlight-focus">3 times as many people experience homelessness</span> each year in Seattle than is counted during the Point In Time Count.</span>
             </div>
             <div className="data-container-large">
               <h2 className="article-title">Encampment Removals 2018</h2>
