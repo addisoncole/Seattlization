@@ -16,13 +16,13 @@ class AboutContainer extends Component {
 
     return (
       <div>
+        <HeaderContainer />
         <CSSTransitionGroup
           transitionName="example"
           transitionAppear={true}
           transitionAppearTimeout={500}
           transitionEnter={false}
           transitionLeave={false}>
-          <HeaderContainer />
           <div className="contrast-wrap">
             <img alt="unattended shopping cart with belongings" className="cart-image" src={cart} />
           </div>

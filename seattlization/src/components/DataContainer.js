@@ -215,13 +215,13 @@ class DataContainer extends Component {
 
     return (
       <div>
+        <HeaderContainer />
         <CSSTransitionGroup
         transitionName="example"
         transitionAppear={true}
         transitionAppearTimeout={500}
         transitionEnter={false}
         transitionLeave={false}>
-          <HeaderContainer />
           <h2 className="article-title">Point In Time Count
             of Homeless in King County</h2>
           <div className="data-container">
